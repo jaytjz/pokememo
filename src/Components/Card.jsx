@@ -2,17 +2,15 @@ import { useState, useEffect } from 'react';
 import Tilt from 'react-parallax-tilt';
 import "../styles/Card.css"
 
-export default function Card({ setPokemonArray, flipped, onClick }){
+export default function Card({ setPokemonArray, flipped, id, onClick }){
     const [pokemon, setPokemon] = useState(null);
     const [loading, setLoading] = useState(true);
-  
+     
     const fetchRandomPokemon = async () => {
-      const maxPokemonId = 649; // Till gen5
-      const randomId = Math.floor(Math.random() * maxPokemonId) + 1;
-  
+
       try {
         setLoading(true);
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`);
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
         const data = await response.json();
         setPokemon(data);
       } catch (error) {
@@ -28,9 +26,14 @@ export default function Card({ setPokemonArray, flipped, onClick }){
 
     useEffect(() => {
         if (pokemon) {
-          setPokemonArray(prevArray => [...prevArray, pokemon.name]);
+            setPokemonArray(prevArray => {
+                if (!prevArray.includes(pokemon.name)) {
+                    return [...prevArray, pokemon.name];
+                }
+                return prevArray;
+            });
         }
-      }, [pokemon]);
+     }, [pokemon]);
   
     if (loading) return <p>Loading...</p>;
     if (!pokemon) return <p>No Pokémon data available.</p>;
