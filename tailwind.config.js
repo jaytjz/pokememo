@@ -11,7 +11,6 @@ export default {
       },
       backgroundImage: {
         'custom-bg': "url('./src/assets/pokemon-bg.png')",
-        'card-bg': "url('./src/assets/card-bg.jpeg')",
       },
     },
   },
