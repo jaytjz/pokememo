@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import Tilt from 'react-parallax-tilt';
+import "../styles/Card.css"
 
-export default function Card(){
+export default function Card({ setPokemonArray, flipped, onClick }){
     const [pokemon, setPokemon] = useState(null);
     const [loading, setLoading] = useState(true);
   
@@ -24,18 +25,29 @@ export default function Card(){
     useEffect(() => {
       fetchRandomPokemon();
     }, []); // Empty dependency array ensures it runs once on mount
+
+    useEffect(() => {
+        if (pokemon) {
+          setPokemonArray(prevArray => [...prevArray, pokemon.name]);
+        }
+      }, [pokemon]);
   
     if (loading) return <p>Loading...</p>;
     if (!pokemon) return <p>No Pokémon data available.</p>;
   
     return (
-      <Tilt
-        tiltReverse
-      >
-          <div className='flex flex-col items-center justify-center rounded-xl bg-black/20 border-0 py-1 h-80 w-56'>
-            <img src={pokemon.sprites.front_default} alt={pokemon.name} className='h-60'/>
-            <h1>{pokemon.name.toUpperCase()}</h1>
+        <Tilt tiltReverse>
+        <div className='card-container'>
+          <div className={`card ${flipped ? 'flipped' : ''}`} onClick={onClick}>
+            <div className='card-side card-front'>
+              <img src={pokemon.sprites.front_default} alt={pokemon.name} className='h-60'/>
+              <h1 className='text-xl'>{pokemon.name.toUpperCase()}</h1>
+            </div>
+            <div className='card-side card-back'>
+              <img src="./src/assets/card-bg.jpeg" className='rounded-xl'/>
+            </div>
           </div>
+        </div>
       </Tilt>
     );
 }
