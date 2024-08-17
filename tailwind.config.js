@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        pixelifySans: ['Pixelify Sans', 'sans-serif'],
+      },
+      backgroundImage: {
+        'custom-bg': "url('./src/assets/pokemon-bg.png')",
+      },
+    },
   },
   plugins: [],
 }
