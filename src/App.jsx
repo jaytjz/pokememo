@@ -2,9 +2,9 @@ import { useState, useEffect } from "react"
 import Card from "./Components/Card"
 
 function App() {
-  const [pokemonArray, setPokemonArray] = useState([]);
   const [flipped, setFlipped] = useState(false);
-  const [randomIds, setRandomIds] = useState([]);
+  const [pokemonIds, setPokemonIds] = useState([]);
+  const [score, setScore] = useState(0)
 
   const getId = () => {
     const maxPokemonId = 649; // Till gen5
@@ -24,8 +24,8 @@ function App() {
   };
 
   useEffect(() => {
-    const ids = generateUniqueIds(4);
-    setRandomIds(ids);
+    const ids = generateUniqueIds(14);
+    setPokemonIds(ids);
   }, []);
 
   const shuffleArray = (array) => {
@@ -39,18 +39,23 @@ function App() {
 
   const handleCardClick = () => {
     setFlipped(prevFlipped => !prevFlipped);
-    setRandomIds(prevIds => shuffleArray(prevIds));
     setTimeout(() => {
-      setFlipped(prevFlipped => !prevFlipped);
-    }, 1000);
+      setPokemonIds(prevIds => shuffleArray(prevIds));
+      setTimeout(() => {
+        setFlipped(prevFlipped => !prevFlipped);
+      }, 400);
+    }, 400);
   };
 
   return (
-    <div className="font-pixelifySans text-2xl bg-[url('./src/assets/pokemon-bg.png')] bg-cover bg-center h-screen w-full flex flex-wrap justify-center items-center gap-10">
-      {randomIds.map(id => (
-        <Card key={id} setPokemonArray={setPokemonArray} flipped={flipped} id={id} onClick={handleCardClick}/>
-      ))}
-      {console.log(pokemonArray)}
+    <div className="font-pixelifySans text-2xl bg-[url('./src/assets/pokemon-bg.png')] bg-cover bg-center h-screen w-full ">
+      <h1 className="text-center p-10">Score: {score}/ {pokemonIds.length}</h1>
+      <div className="flex flex-wrap justify-center items-center gap-10">
+        {pokemonIds.map(id => (
+          <Card key={id} flipped={flipped} id={id} onClick={handleCardClick}/>
+        ))}
+        {console.log(pokemonIds)}
+      </div>
     </div>
   )
 }

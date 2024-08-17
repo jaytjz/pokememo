@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Tilt from 'react-parallax-tilt';
 import "../styles/Card.css"
 
-export default function Card({ setPokemonArray, flipped, id, onClick }){
+export default function Card({ flipped, id, onClick }){
     const [pokemon, setPokemon] = useState(null);
     const [loading, setLoading] = useState(true);
      
@@ -23,17 +23,6 @@ export default function Card({ setPokemonArray, flipped, id, onClick }){
     useEffect(() => {
       fetchRandomPokemon();
     }, []); // Empty dependency array ensures it runs once on mount
-
-    useEffect(() => {
-        if (pokemon) {
-            setPokemonArray(prevArray => {
-                if (!prevArray.includes(pokemon.name)) {
-                    return [...prevArray, pokemon.name];
-                }
-                return prevArray;
-            });
-        }
-     }, [pokemon]);
   
     if (loading) return <p>Loading...</p>;
     if (!pokemon) return <p>No Pokémon data available.</p>;
