@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Tilt from 'react-parallax-tilt';
 import "../styles/Card.css"
+import cardBg from "../assets/card-bg.jpeg"
 
 export default function Card({ flipped, id, onClick }){
     const [pokemon, setPokemon] = useState(null);
@@ -36,7 +37,7 @@ export default function Card({ flipped, id, onClick }){
               <h1 className='text-xl'>{pokemon.name.toUpperCase()}</h1>
             </div>
             <div className='card-side card-back'>
-              <img src="./src/assets/card-bg.jpeg" className='rounded-xl'/>
+              <img src={cardBg} className='rounded-xl'/>
             </div>
           </div>
         </div>

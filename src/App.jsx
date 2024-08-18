@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import Card from "./Components/Card"
+import pokemonBg from "./assets/pokemon-bg.png" 
 
 function App() {
   const [flipped, setFlipped] = useState(false);
@@ -83,7 +84,7 @@ function App() {
   };
 
   return (
-    <div className="font-pixelifySans text-2xl bg-[url('./src/assets/pokemon-bg.png')] bg-cover bg-center h-screen w-full ">
+    <div className="font-pixelifySans text-2xl bg-cover bg-center h-screen w-full" style={{ backgroundImage: `url(${pokemonBg})` }}>
       <div className="flex justify-center">
         <h1 className="p-10">Best Score: {bestScore}</h1>
         <h1 className="p-10">Score: {score}/ {pokemonIds.length}</h1>
