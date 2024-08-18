@@ -84,12 +84,12 @@ function App() {
   };
 
   return (
-    <div className="font-pixelifySans text-2xl bg-cover bg-center h-screen w-full" style={{ backgroundImage: `url(${pokemonBg})` }}>
+    <div className="font-pixelifySans text-2xl bg-cover bg-center min-h-screen w-full" style={{ backgroundImage: `url(${pokemonBg})` }}>
       <div className="flex justify-center">
         <h1 className="p-10">Best Score: {bestScore}</h1>
         <h1 className="p-10">Score: {score}/ {pokemonIds.length}</h1>
       </div>
-      <div className="flex flex-wrap justify-center items-center gap-10">
+      <div className="flex flex-wrap justify-center items-center gap-4">
         {!gameOver && !win && (
           pokemonIds.map(id => (
             <Card key={id} flipped={flipped} id={id} onClick={() => handleCardClick(id)}/>

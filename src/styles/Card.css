@@ -4,7 +4,7 @@
   
   .card {
     position: relative;
-    width: 14rem;
+    width: 12rem;
     height: 20rem;
     transform-style: preserve-3d;
     transition: transform 0.6s;
@@ -30,8 +30,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 14rem;
-    height: 20rem;
+    width: 11rem;
+    height: 15rem;
     border-radius: 0.75rem
   }
   

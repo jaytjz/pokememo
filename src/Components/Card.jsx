@@ -33,7 +33,7 @@ export default function Card({ flipped, id, onClick }){
         <div className='card-container'>
           <div className={`card ${flipped ? 'flipped' : ''}`} onClick={onClick}>
             <div className='card-side card-front'>
-              <img src={pokemon.sprites.front_default} alt={pokemon.name} className='h-60'/>
+              <img src={pokemon.sprites.front_default} alt={pokemon.name} className='h-52'/>
               <h1 className='text-xl'>{pokemon.name.toUpperCase()}</h1>
             </div>
             <div className='card-side card-back'>
